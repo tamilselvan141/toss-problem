@@ -1,0 +1,77 @@
+  computer = []
+  player = []
+  
+  
+  const toss = () => {
+      count = 1
+      interval = setInterval(() => {
+  
+          coin1 = ["Heads", "Tails"][Math.round(Math.random())];
+          coin2 = ["Heads", "Tails"][Math.round(Math.random())];
+  
+  
+          console.log(`${count}. Computer   Player`);
+          console.log(`    ${coin1}      ${coin2}`);
+          computer.push(coin1)
+          player.push(coin2)
+          if (count == 10) {
+              console.log("Loading Results...");
+  
+              setTimeout(() => {
+                  tempComp = computer.slice(-10)
+                  tempPlyr = player.slice(-10)
+                  tempComputerHeads = (tempComp.filter(side => side.includes("Heads"))).length
+                  tempPlayerHeads = (tempPlyr.filter(side => side.includes("Heads"))).length
+  
+                  console.log("No of Heads by Coumputer", (tempComputerHeads));
+                  console.log("No of Heads by Player", (tempPlayerHeads));
+                  win(tempComputerHeads, tempPlayerHeads)
+  
+              }, 5000);
+              
+              clearInterval(interval)
+          }
+          count++
+      }, 1000)
+  
+  }
+  setTimeout(() => {
+      ComputerHeads = (computer.filter(side => side.includes("Heads"))).length
+      PlayerHeads = (player.filter(side => side.includes("Heads"))).length
+      console.log("Total No of Heads by Coumputer", (ComputerHeads));
+      console.log("Total No of Heads by Player", (PlayerHeads));
+      if (ComputerHeads > PlayerHeads) {
+          console.log("Final Winner is Computer🥇")
+      } else if (ComputerHeads < PlayerHeads) {
+          console.log("Final Winner is Player 🥇")
+      } else if (ComputerHeads = PlayerHeads) {
+          console.log("...DRAW...");
+      }
+      console.log("------------------");
+      
+  
+  }, 60800);
+  function win(ComputerHeads, PlayerHeads) {
+      if (ComputerHeads > PlayerHeads) {
+          console.log("Winner is Computer");
+      } else if (ComputerHeads < PlayerHeads) {
+          console.log("Winner is Player");
+      } else if (ComputerHeads = PlayerHeads) {
+          console.log("...DRAW...");
+      }
+      console.log("------------------");
+  }
+  
+  
+  r = 1
+  console.log("Round ", r);
+         toss()
+  interval2 = setInterval(() => {
+      console.log("Round ",r+1)
+          toss()
+          r++
+      if (r == 4) {
+          clearInterval(interval2)
+      }
+  
+  }, 15100)
